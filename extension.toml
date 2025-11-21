@@ -1,0 +1,17 @@
+id = "quarto"
+name = "Quarto"
+version = "0.0.1"
+schema_version = 1
+authors = ["Prefrontal Systems"]
+description = "Quarto support for Zed"
+repository = "https://github.com/prefrontal-systems/zed-quarto-plugin"
+
+[grammars.markdown]
+repository = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+commit = "afaa4138517363362f54c89330c9d79391e81168"
+path = "tree-sitter-markdown"
+
+[grammars.markdown_inline]
+repository = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+commit = "afaa4138517363362f54c89330c9d79391e81168"
+path = "tree-sitter-markdown-inline"

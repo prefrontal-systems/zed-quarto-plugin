@@ -1,0 +1,40 @@
+{
+  "R Code Chunk": {
+    "prefix": "r",
+    "body": [
+      "```{r}",
+      "$0",
+      "```"
+    ],
+    "description": "R Code Chunk"
+  },
+  "Python Code Chunk": {
+    "prefix": "py",
+    "body": [
+      "```{python}",
+      "$0",
+      "```"
+    ],
+    "description": "Python Code Chunk"
+  },
+  "Callout Note": {
+    "prefix": "note",
+    "body": [
+      "::: {.callout-note}",
+      "$0",
+      ":::"
+    ],
+    "description": "Callout Note"
+  },
+  "YAML Frontmatter": {
+    "prefix": "yaml",
+    "body": [
+      "---",
+      "title: \"$1\"",
+      "format: html",
+      "---",
+      "$0"
+    ],
+    "description": "YAML Frontmatter"
+  }
+}

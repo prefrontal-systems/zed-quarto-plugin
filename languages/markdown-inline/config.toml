@@ -1,0 +1,3 @@
+name = "Markdown Inline"
+grammar = "markdown_inline"
+path_suffixes = []

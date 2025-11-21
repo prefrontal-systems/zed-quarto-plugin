@@ -1,0 +1,14 @@
+name = "Quarto"
+grammar = "markdown"
+path_suffixes = ["qmd"]
+line_comments = ["<!-- "]
+block_comments = [ ["<!--", "-->"] ]
+
+brackets = [
+    { start = "{", end = "}", close = true, newline = true },
+    { start = "[", end = "]", close = true, newline = true },
+    { start = "(", end = ")", close = true, newline = true },
+    { start = "\"", end = "\"", close = true, newline = false },
+    { start = "`", end = "`", close = true, newline = false },
+]
+word_characters = ["#", "@", "."]
