@@ -1,8 +1,7 @@
 name = "Quarto"
 grammar = "markdown"
 path_suffixes = ["qmd"]
-line_comments = ["<!-- "]
-block_comments = [ ["<!--", "-->"] ]
+block_comment = { start = "<!--", prefix = "", end = "-->", tab_size = 0 }
 
 brackets = [
     { start = "{", end = "}", close = true, newline = true },
