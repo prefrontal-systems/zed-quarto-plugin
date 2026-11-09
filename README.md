@@ -24,9 +24,9 @@ Quarto support for the [Zed editor](https://zed.dev).
 
 ## Installation
 
-### From Zed Extensions (coming soon)
+### From Zed Extensions
 
-Search for "Quarto" in Zed's extension marketplace.
+Run `zed: extensions` from the Command Palette, search for "Quarto" and click **Install**.
 
 ### Manual Installation (Development)
 
