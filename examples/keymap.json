@@ -1,0 +1,9 @@
+[
+  {
+    "context": "Editor && extension == qmd",
+    "bindings": {
+      "cmd-shift-k": ["task::Spawn", { "task_name": "Quarto: Preview document" }],
+      "cmd-alt-k": ["task::Spawn", { "task_name": "Quarto: Render document" }]
+    }
+  }
+]

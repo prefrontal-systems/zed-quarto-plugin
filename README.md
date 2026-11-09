@@ -24,9 +24,9 @@ Quarto support for the [Zed editor](https://zed.dev).
 
 ## Installation
 
-### From Zed Extensions (coming soon)
+### From Zed Extensions
 
-Search for "Quarto" in Zed's extension marketplace.
+Run `zed: extensions` from the Command Palette, search for "Quarto" and click **Install**.
 
 ### Manual Installation (Development)
 
@@ -48,16 +48,59 @@ The extension includes snippets for common Quarto patterns:
 - `note` - Callout note block
 - `yaml` - YAML front matter template
 
-## Render and Preview
+## Tasks
 
-To preview your Quarto document:
+The extension bundles tasks for rendering and previewing in
+[`languages/quarto/tasks.json`](languages/quarto/tasks.json). With a `.qmd` file active, run
+`task: spawn` (`Cmd+Shift+R`) and type `Quarto`. The `quarto` CLI must be on your `PATH`.
 
-1. Open the integrated terminal in Zed (`Ctrl+~` or `Cmd+J`)
-2. Run:
-   ```bash
-   quarto preview your-document.qmd
-   ```
-3. Open the preview URL in your browser
+| Task | Command |
+| --- | --- |
+| Preview document | `quarto preview <file>`, also as `--to html` and `--to pdf` |
+| Render document | `quarto render <file>` |
+| Render document (format) | `--to` `all`, `html`, `pdf`, `docx`, `typst` or `revealjs` |
+| Render document (refresh cache) | `quarto render <file> --cache-refresh` |
+| Render document (skip code execution) | `quarto render <file> --no-execute` |
+| Render project | `quarto render` |
+| Preview project | `quarto preview`, also with `--render all` |
+| Save document as .ipynb (convert) | `quarto convert <file> --output <stem>.ipynb` |
+| Check installation | `quarto check` |
+
+Behaviour to know about:
+
+- Bundled tasks are listed only while a Quarto buffer is active, so they don't appear in
+  `_quarto.yml` or `.ipynb` files.
+- Project tasks search upward from the active file and run in the nearest folder with a
+  `_quarto.yml` or `_quarto.yaml`, so projects in subfolders work. They stop with a message if
+  there is none.
+- Preview project needs a project type that supports it, such as a website or book. A `default`
+  project also needs an index file, otherwise Quarto stops with an error.
+- Spawning a running task again restarts it. All document previews share one task per format, so
+  previewing another file replaces the running preview.
+- The convert task refuses to overwrite an existing `.ipynb`, because `quarto convert` otherwise
+  replaces it silently.
+- Project and convert tasks use POSIX shell syntax, so they need a shell such as zsh or bash.
+- Zed ignores the order in `tasks.json`. It lists recently used tasks first, then tasks using
+  more `ZED_*` variables, then sorts by label. To keep Preview document at the top of a fresh
+  list, no task should use more variables than it does, and the convert task's label should sort
+  after the Render tasks.
+
+### Using the tasks without the extension
+
+Copy the entries you want from `languages/quarto/tasks.json` into one of these files:
+
+- `.zed/tasks.json` for one project (`zed: open project tasks`)
+- `~/.config/zed/tasks.json` for all projects (`zed: open tasks`)
+
+Tasks in these files are not limited to Quarto buffers, so they are listed for every file type.
+If the extension is also installed, you will see duplicates.
+
+### Keybindings
+
+[`examples/keymap.json`](examples/keymap.json) binds preview to `Cmd+Shift+K` and render to
+`Cmd+Alt+K` in `.qmd` files. Copy it into your keymap (`zed: open keymap`). `Cmd+Shift+K` matches
+RStudio and the Quarto VS Code extension, but replaces Zed's default `editor::DeleteLine` in
+`.qmd` files.
 
 ## Project Structure
 
@@ -69,10 +112,13 @@ zed-quarto-plugin/
 │   │   ├── config.toml         # Language configuration
 │   │   ├── highlights.scm      # Syntax highlighting queries
 │   │   ├── injections.scm      # Language injection queries
-│   │   └── outline.scm         # Outline/symbol queries
+│   │   ├── outline.scm         # Outline/symbol queries
+│   │   └── tasks.json          # Render and preview tasks
 │   └── markdown-inline/        # Inline markdown (bold, italic, etc.)
 │       ├── config.toml
 │       └── highlights.scm
+├── examples/
+│   └── keymap.json             # Optional keybindings for the tasks
 ├── grammars/                   # Tree-sitter grammar source
 └── snippets/
     └── quarto.json             # Code snippets
