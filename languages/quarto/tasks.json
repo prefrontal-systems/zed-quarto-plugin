@@ -1,0 +1,116 @@
+[
+  {
+    "label": "Quarto: Preview document",
+    "command": "quarto preview \"$ZED_FILE\"",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Preview document (HTML)",
+    "command": "quarto preview \"$ZED_FILE\" --to html",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Preview document (PDF)",
+    "command": "quarto preview \"$ZED_FILE\" --to pdf",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document",
+    "command": "quarto render \"$ZED_FILE\"",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document (all formats)",
+    "command": "quarto render \"$ZED_FILE\" --to all",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document (HTML)",
+    "command": "quarto render \"$ZED_FILE\" --to html",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document (PDF)",
+    "command": "quarto render \"$ZED_FILE\" --to pdf",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document (Word)",
+    "command": "quarto render \"$ZED_FILE\" --to docx",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document (Typst)",
+    "command": "quarto render \"$ZED_FILE\" --to typst",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document (Reveal.js)",
+    "command": "quarto render \"$ZED_FILE\" --to revealjs",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document (refresh cache)",
+    "command": "quarto render \"$ZED_FILE\" --cache-refresh",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render document (skip code execution)",
+    "command": "quarto render \"$ZED_FILE\" --no-execute",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Render project",
+    "command": "d=\"$ZED_DIRNAME\"; until [ -f \"$d/_quarto.yml\" ] || [ -f \"$d/_quarto.yaml\" ]; do [ \"$d\" = / ] && { echo \"No _quarto.yml in or above $ZED_DIRNAME\"; exit 1; }; d=$(dirname \"$d\"); done; cd \"$d\" && quarto render",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "all"
+  },
+  {
+    "label": "Quarto: Preview project",
+    "command": "d=\"$ZED_DIRNAME\"; until [ -f \"$d/_quarto.yml\" ] || [ -f \"$d/_quarto.yaml\" ]; do [ \"$d\" = / ] && { echo \"No _quarto.yml in or above $ZED_DIRNAME\"; exit 1; }; d=$(dirname \"$d\"); done; cd \"$d\" && quarto preview",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "all"
+  },
+  {
+    "label": "Quarto: Preview project (full render)",
+    "command": "d=\"$ZED_DIRNAME\"; until [ -f \"$d/_quarto.yml\" ] || [ -f \"$d/_quarto.yaml\" ]; do [ \"$d\" = / ] && { echo \"No _quarto.yml in or above $ZED_DIRNAME\"; exit 1; }; d=$(dirname \"$d\"); done; cd \"$d\" && quarto preview --render all",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true,
+    "save": "all"
+  },
+  {
+    "label": "Quarto: Convert document to .ipynb",
+    "command": "[ ! -e \"$ZED_DIRNAME/$ZED_STEM.ipynb\" ] || { echo \"Not overwriting existing $ZED_STEM.ipynb\"; exit 1; }; quarto convert \"$ZED_FILE\" --output \"$ZED_DIRNAME/$ZED_STEM.ipynb\"",
+    "save": "current"
+  },
+  {
+    "label": "Quarto: Check installation",
+    "command": "quarto check"
+  }
+]
