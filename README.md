@@ -63,7 +63,7 @@ The extension bundles tasks for rendering and previewing in
 | Render document (skip code execution) | `quarto render <file> --no-execute` |
 | Render project | `quarto render` |
 | Preview project | `quarto preview`, also with `--render all` |
-| Convert document to .ipynb | `quarto convert <file> --output <stem>.ipynb` |
+| Save document as .ipynb (convert) | `quarto convert <file> --output <stem>.ipynb` |
 | Check installation | `quarto check` |
 
 Behaviour to know about:
@@ -80,6 +80,10 @@ Behaviour to know about:
 - The convert task refuses to overwrite an existing `.ipynb`, because `quarto convert` otherwise
   replaces it silently.
 - Project and convert tasks use POSIX shell syntax, so they need a shell such as zsh or bash.
+- Zed ignores the order in `tasks.json`. It lists recently used tasks first, then tasks using
+  more `ZED_*` variables, then sorts by label. To keep Preview document at the top of a fresh
+  list, no task should use more variables than it does, and the convert task's label should sort
+  after the Render tasks.
 
 ### Using the tasks without the extension
 

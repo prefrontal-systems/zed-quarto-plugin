@@ -105,8 +105,8 @@
     "save": "all"
   },
   {
-    "label": "Quarto: Convert document to .ipynb",
-    "command": "[ ! -e \"$ZED_DIRNAME/$ZED_STEM.ipynb\" ] || { echo \"Not overwriting existing $ZED_STEM.ipynb\"; exit 1; }; quarto convert \"$ZED_FILE\" --output \"$ZED_DIRNAME/$ZED_STEM.ipynb\"",
+    "label": "Quarto: Save document as .ipynb (convert)",
+    "command": "f=\"$ZED_FILE\"; o=\"${f%.*}.ipynb\"; [ ! -e \"$o\" ] || { echo \"Not overwriting existing $o\"; exit 1; }; quarto convert \"$f\" --output \"$o\"",
     "save": "current"
   },
   {
